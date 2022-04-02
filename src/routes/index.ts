@@ -1,4 +1,4 @@
-import{ Router} from 'express'; 
+import{ Router, Request, Response, } from 'express'; 
 
 import * as PageController from '../controllers/pageController';
 import * as SearchController from '../controllers/searchController';
@@ -7,6 +7,11 @@ router.get('/', PageController.home);
 router.get('/dogs', PageController.dogs);  
 router.get('/cats', PageController.cats); 
 router.get('/fishes',PageController.fishes); 
+router.get('/search',SearchController.search); 
+
+// router.get('/static', (req: Request, res: Response) => {
+//     res.write()
+// });
 
 
 

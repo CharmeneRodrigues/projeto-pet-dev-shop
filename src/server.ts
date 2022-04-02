@@ -7,7 +7,7 @@ import mainRoutes from './routes/index';
 
 dotenv.config();
 
-console.log("Servidor pronto");
+console.log(`Servidor escutando na porta ${process.env.PORT}`);
 
 const server = express();
 server.set('view engine', 'mustache');
@@ -16,9 +16,13 @@ server.engine('mustache', mustache());
 
 server.use(express.static(path.join(__dirname, '../public')));
 
-server.use(mainRoutes)
-server.use((req , res) =>{
-res.send('página não encontrada');
+// Criado por Tiago em 202203301130
+server.use('/static', express.static(path.join(__dirname, '../_html')));
+
+server.use(mainRoutes);
+
+server.use((req, res)=> {
+    res.render('pages/404');
 }); 
 
 server.listen(process.env.PORT);
